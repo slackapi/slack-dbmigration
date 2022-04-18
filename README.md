@@ -39,3 +39,59 @@ deno run --allow-read --allow-env --allow-net https://deno.land/x/slack_dbmigrat
 --appId
 --workspace - Workspace name
 ```
+
+
+## Reference
+
+Old Slack Table Schema Example
+
+```
+// in tables/reversals.ts
+export const Reversals = DefineTable("reversals", {
+  primary_key: "id",
+  columns: {
+    id: {
+      type: Schema.types.string,
+    },
+    original_string: {
+      type: Schema.types.string,
+    },
+    reversed_string: {
+      type: Schema.types.string,
+    },
+    channel_id: {
+      type: Schema.slack.types.channel_id,
+    },
+  },
+});
+
+// In project.ts
+tables: [Reversals],
+```
+
+New Slack Datastore Schema Example:
+
+```
+// in manifest.ts
+const Reversals = DefineDatastore({
+  primary_key: "id",
+  name: "reversals",
+  attributes: {
+    id: {
+      type: Schema.types.string,
+    },
+    original_string: {
+      type: Schema.types.string,
+    },
+    reversed_string: {
+      type: Schema.types.string,
+    },
+    channel_id: {
+      type: Schema.slack.types.channel_id,
+    },
+  },
+});
+
+// Add this to the manifest export in manifest.ts
+datastores: [Reversals],
+```
