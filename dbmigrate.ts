@@ -93,10 +93,10 @@ if (command === "export") {
     {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json; charset=utf-8",
         "authorization": `Bearer ${token}`,
       },
-      body: JSON.stringify({ "app_id": appId, "table": tableName }),
+      body: JSON.stringify({ "app_id": appId, "table": tableName, "limit": 1000 }),
     },
   );
   const tableData = await response.json();
