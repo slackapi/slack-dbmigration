@@ -9,7 +9,7 @@ The export command writes data from a slack table into a json file. We recommend
 Run the following command. Make sure to replace `$YOUR_TABLE_NAME` with the name of your table
 
 ```
-deno run --allow-read --allow-write --allow-env --allow-net dbmigrate.ts export --table $YOUR_TABLE_NAME
+deno run --allow-read --allow-write --allow-env --allow-net https://deno.land/x/slack_dbmigration@v0.1.1/dbmigrate.ts export --table $YOUR_TABLE_NAME
 ```
 
 You should now have a `$YOUR_TABLE_NAMEDataBackup.json` in the root of your slack app now. You can use the import command in this script to migrate this backup into Slack Datastore
@@ -29,7 +29,7 @@ We recommend running this script in the root of the new Slack app you have creat
 Run the following command. Make sure to replace `$PATH_TO_YOUR_TABLE_NAME_DataBackup.json` with the relative or full path to the table data backup `.json` file.
 
 ```
-deno run --allow-read --allow-env --allow-net dbmigrate.ts import --filePath=$PATH_TO_YOUR_TABLE_NAME_DataBackup.json
+deno run --allow-read --allow-env --allow-net https://deno.land/x/slack_dbmigration@v0.1.1/dbmigrate.ts import --filePath=$PATH_TO_YOUR_TABLE_NAME_DataBackup.json
 ```
 
 ### Available Options
